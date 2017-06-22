@@ -4,7 +4,11 @@
 
 # Xcode
 #
+.idea/
 build/
+android/.gradle
+android/build
+android/app/build
 node_modules/
 ios/build
 *.pbxuser

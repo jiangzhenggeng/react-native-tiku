@@ -25,13 +25,12 @@ import ImmutableCompare from '../Common/ImmutableCompare';
 import SizeConfig from '../Common/Config/SizeConfig';
 import UrlConfig from '../Common/Config/UrlConfig';
 import userLoginStatus from '../Common/Config/KeylConfig';
-import BottomTabBar from '../BottomTabBar.android';
 import HttpRequest from '../Common/HttpRequest';
 import { NavigationActions } from 'react-navigation';
+import TouchBtnWrap from '../Common/TouchBtnWrap';
 
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 const { width } = Dimensions.get('window');
-const TouchableView = Platform.OS=='ios'?TouchableOpacity:TouchableNativeFeedback;
 
 export default class extends Component {
 
@@ -102,7 +101,7 @@ export default class extends Component {
                     }
                 >
                     <View style={[styles.border,{marginTop:16}]}>
-                        <TouchableView onPress={this.InFo.bind(this)}>
+                        <TouchBtnWrap onPress={this.InFo.bind(this)}>
                             <View style={[styles.loginStatus,styles.common,{position:'relative'}]}>
                                 <View style={[styles.moduleFace,styles.moduleFaceWrap]}>
                                     <Image
@@ -118,14 +117,14 @@ export default class extends Component {
                                     <Icon name="ios-arrow-forward" size={18} color="#e6e6e6"/>
                                 </View>
                             </View>
-                        </TouchableView>
+                        </TouchBtnWrap>
                     </View>
 
                     <View>
                         <View><Text style={[styles.fixText]}>考试</Text></View>
                         <View style={[styles.border]}>
 
-                            <TouchableView onPress={this.MyExam.bind(this)}>
+                            <TouchBtnWrap onPress={this.MyExam.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -139,8 +138,8 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
-                            <TouchableView onPress={this.MySimulation.bind(this)}>
+                            </TouchBtnWrap>
+                            <TouchBtnWrap onPress={this.MySimulation.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -154,7 +153,7 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
 
 
                         </View>
@@ -164,7 +163,7 @@ export default class extends Component {
                         <View><Text style={[styles.fixText]}>统计</Text></View>
                         <View style={[styles.border]}>
 
-                            <TouchableView onPress={this.MyPractice.bind(this)}>
+                            <TouchBtnWrap onPress={this.MyPractice.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -178,9 +177,9 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
 
-                            <TouchableView onPress={this.MyStrong.bind(this)}>
+                            <TouchBtnWrap onPress={this.MyStrong.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -194,9 +193,9 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
 
-                            <TouchableView onPress={this.collectionLook.bind(this)}>
+                            <TouchBtnWrap onPress={this.collectionLook.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -210,9 +209,9 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
 
-                            <TouchableView onPress={this.errorLook.bind(this)}>
+                            <TouchBtnWrap onPress={this.errorLook.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -225,7 +224,7 @@ export default class extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
 
                         </View>
                     </View>
@@ -233,7 +232,7 @@ export default class extends Component {
                     <View>
                         <View><Text style={[styles.fixText]}>科目</Text></View>
                         <View style={[styles.border]}>
-                            <TouchableView onPress={this.MySubject.bind(this)}>
+                            <TouchBtnWrap onPress={this.MySubject.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -247,8 +246,8 @@ export default class extends Component {
                                     </View>
                                     <View style={{height:0.8,backgroundColor:'#f1f1f1',position:'absolute',bottom:0,width:width,left:16}}></View>
                                 </View>
-                            </TouchableView>
-                            <TouchableView onPress={this.BuySubject.bind(this)}>
+                            </TouchBtnWrap>
+                            <TouchBtnWrap onPress={this.BuySubject.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -261,9 +260,9 @@ export default class extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
                             {/*
-                            <TouchableView onPress={this.MyOrder.bind(this)}>
+                            <TouchBtnWrap onPress={this.MyOrder.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -276,7 +275,7 @@ export default class extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
                             */}
                         </View>
                     </View>
@@ -284,7 +283,7 @@ export default class extends Component {
                     <View style={{marginBottom:16}}>
                         <View><Text style={[styles.fixText]}>关于</Text></View>
                         <View style={[styles.border]}>
-                            <TouchableView onPress={this.toDevelopers.bind(this)}>
+                            <TouchBtnWrap onPress={this.toDevelopers.bind(this)}>
                                 <View  style={[styles.common,{position:'relative'}]}>
                                     <View style={[styles.itemWrap]}>
                                         <View style={[styles.itemLeft]}>
@@ -296,18 +295,18 @@ export default class extends Component {
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
                         </View>
                     </View>
 
                     {global.loginState &&
                     <View style={{marginBottom:16,}}>
                         <View style={[styles.border]}>
-                            <TouchableView onPress={this.LoginOut.bind(this)}>
+                            <TouchBtnWrap onPress={this.LoginOut.bind(this)}>
                                 <View  style={[styles.common,{alignItems:'center'}]}>
                                     <Text style={[styles.text,{padding:12,color:'#fe5342'}]}>退出登录</Text>
                                 </View>
-                            </TouchableView>
+                            </TouchBtnWrap>
                         </View>
                     </View>}
                 </ScrollView>
@@ -327,8 +326,6 @@ export default class extends Component {
     }
     IsLogin(){
         if(!global.loginState || !global.memberid){
-            ToastAndroid.show('你未登录',ToastAndroid.LONG);
-
             this.listener = RCTDeviceEventEmitter.addListener('userLogin',()=>{
                 this.state.user = global.loginState;
                 this._onRefresh();
@@ -351,7 +348,6 @@ export default class extends Component {
         }).then(()=>{
             global.loginState = null;
             global.memberid = null;
-            ToastAndroid.show('退出成功',ToastAndroid.SHORT);
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [

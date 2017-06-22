@@ -1,7 +1,14 @@
-'use strict';
 
-import {ToastAndroid} from 'react-native';
-const HOST = 'http://ac.jiangzg.com/index.php';
+import {
+    Platform
+} from 'react-native';
+let HOST;
+if(Platform.OS=='ios'){
+    HOST = 'https://ac.jiangzg.com/index.php';
+}else{
+    HOST = 'http://ac.jiangzg.com/index.php';
+}
+
 
 export default {
 
@@ -20,7 +27,7 @@ export default {
                 body: JSON.stringify(body)
             }).then((response) => {
                 if(!response.ok){
-                    ToastAndroid.show('数据错误', ToastAndroid.LONG);
+                    alert('数据错误');
                 }
                 return response.text();
 
@@ -29,14 +36,12 @@ export default {
                 let first = response.substr(0,1);
                 let last  = response.substr(-1,1);
                 if( (first!='[' && first!='{') || (last!=']' && last!='}') ){
-                    ToastAndroid.show('数据格式错误', ToastAndroid.LONG);
-                    console.log(url + '?body=' + JSON.stringify(body));
+                    alert('数据格式错误');
                 }
                 resolve( JSON.parse(response) );
 
             }).catch(error => {
-                reject(error);
-                ToastAndroid.show('请求发生错误002', ToastAndroid.LONG);
+                console.log(url+'\r请求发生错误002\r'+error);
             });
         });
     }

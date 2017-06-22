@@ -15,11 +15,13 @@ import {
     TextInput,
     Navigator,
     TouchableWithoutFeedback,
-    ViewPagerAndroid
+    ViewPagerAndroid,
+    Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImmutableCompare from '../Common/ImmutableCompare';
 import Banner from './Main/Banner';
+import TouchBtnWrap from '../Common/TouchBtnWrap';
 
 export default class extends Component {
 
@@ -32,10 +34,6 @@ export default class extends Component {
             init:false
         };
         this.navigate = this.props.navigation.navigate;
-
-        // this.navigate('Common/WebView',{
-        //     url:'http://m.jiguo.com/mb/api/cps?url=http://you.163.com/item/detail?id=1124005&dvhu'
-        // });
     }
 
     render() {
@@ -47,50 +45,50 @@ export default class extends Component {
                     <View style={styles.wrap}>
                         <View style={styles.wrapRow}>
                             <View style={[styles.wrapCell]}>
-                                <TouchableNativeFeedback onPress={this.toExam.bind(this)}>
+                                <TouchBtnWrap onPress={this.toExam.bind(this)}>
                                     <View style={styles.innerCell}>
                                         <Icon color={color} name={'ios-bookmarks'+st} size={size} />
                                         <Text>考试</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                             <View style={styles.wrapCellLine} />
                             <View style={styles.wrapCell}>
-                                <TouchableNativeFeedback onPress={this.toMoni.bind(this)}>
+                                <TouchBtnWrap onPress={this.toMoni.bind(this)}>
                                     <View style={styles.innerCell}>
                                         <Icon color={color} name={'ios-browsers'+st} size={size} />
                                         <Text>模拟</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                         </View>
                         <View style={styles.wrapRow}>
                             <View style={styles.wrapCell}>
-                                <TouchableNativeFeedback onPress={this.toWenDa.bind(this)}>
+                                <TouchBtnWrap onPress={this.toWenDa.bind(this)}>
                                     <View style={styles.innerCell}>
                                         <Icon color={color} name={'ios-help-circle'+st} size={size} />
                                         <Text>问答</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                             <View style={styles.wrapCellLine} />
                             <View style={styles.wrapCell}>
-                                <TouchableNativeFeedback onPress={this.toDaGang.bind(this)}>
+                                <TouchBtnWrap onPress={this.toDaGang.bind(this)}>
                                     <View style={styles.innerCell}>
                                         <Icon color={color} name={'ios-cube'+st} size={size} />
                                         <Text>大纲</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                         </View>
                         <View style={styles.wrapRow}>
                             <View style={styles.wrapCell}>
-                                <TouchableNativeFeedback onPress={this.toKeCheng.bind(this)}>
+                                <TouchBtnWrap onPress={this.toKeCheng.bind(this)}>
                                     <View style={styles.innerCell}>
                                         <Icon color={color} name={'ios-desktop'+st} size={size} />
                                         <Text>课程</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                             <View style={styles.wrapCellLine} />
                             <View style={styles.wrapCell}></View>

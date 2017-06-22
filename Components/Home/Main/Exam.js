@@ -28,6 +28,7 @@ import UnitTool from './../../Common/UnitTool';
 import HttpRequest from '../../Common/HttpRequest';
 import UrlConfig from '../../Common/Config/UrlConfig';
 import AddSubjectTipsPage from '../../Common/AddSubjectTipsPage';
+import TouchBtnWrap from '../../Common/TouchBtnWrap';
 
 export default class extends Component {
 
@@ -114,7 +115,7 @@ export default class extends Component {
     _renderRow( item, sectionID, rowID ){
         return (
             <View key={sectionID+'-'+rowID} style={styles.moduleItemList}>
-                <TouchableNativeFeedback
+                <TouchBtnWrap
                     style={{flex:1,}}
                     onPress={this.doQuestion.bind(this,item.paperid)}
                 >
@@ -136,7 +137,7 @@ export default class extends Component {
                             </View>
                         </View>
                     </View>
-                </TouchableNativeFeedback>
+                </TouchBtnWrap>
             </View>
         );
     }
