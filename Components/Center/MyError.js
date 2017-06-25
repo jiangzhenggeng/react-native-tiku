@@ -23,6 +23,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import ImmutableCompare from "../Common/ImmutableCompare";
 import PageLoading from "../Common/PageLoading";
+import TouchBtnWrap from "../Common/TouchBtnWrap";
 import HttpRequest from '../Common/HttpRequest';
 import UrlConfig from '../Common/Config/UrlConfig';
 import SizeConfig from '../Common/Config/SizeConfig';
@@ -115,7 +116,7 @@ export default class extends Component {
     _renderRow( rowData, sectionID, rowID ){
         return (
             <View key={sectionID+'-'+rowID} style={styles.bottomLine}>
-                <TouchableNativeFeedback onPress={this.intoSubjectList.bind(this,rowData)}>
+                <TouchBtnWrap onPress={this.intoSubjectList.bind(this,rowData)}>
                     <View style={[styles.borderFix,{flex:1}]}>
                         <Icon name={rowData.icon} size={24} color="#1682fb" style={{marginRight:10}}/>
                         <View style={[styles.subHeader]}>
@@ -126,7 +127,7 @@ export default class extends Component {
                             <Icon name="ios-arrow-forward" size={18} color="#e6e6e6"/>
                         </View>
                     </View>
-                </TouchableNativeFeedback>
+                </TouchBtnWrap>
             </View>
         );
     }

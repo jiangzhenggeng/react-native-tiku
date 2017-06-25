@@ -14,6 +14,7 @@ import {
 import ViewPager from 'react-native-viewpager';
 import UrlConfig from '../../Common/Config/UrlConfig';
 import HttpRequest from '../../Common/HttpRequest';
+import TouchBtnWrap from '../../Common/TouchBtnWrap';
 import UnitTool from '../../Common/UnitTool';
 
 const { width } = Dimensions.get('window')
@@ -48,9 +49,9 @@ export default class extends Component {
 
     _renderPage(data, pageID){
         return (
-            <TouchableWithoutFeedback onPress={this.toWebView.bind(this,data.link)} style={{flex:1}}>
+            <TouchBtnWrap onPress={this.toWebView.bind(this,data.link)} style={{flex:1}}>
                 <Image resizeMode='stretch' style={styles.image} source={{uri:data.image}} />
-            </TouchableWithoutFeedback>
+            </TouchBtnWrap>
         );
     }
 

@@ -16,7 +16,6 @@ import {
     ToastAndroid
 } from 'react-native';
 import { StackNavigator,TabNavigator,NavigationActions } from 'react-navigation';
-import CardStackStyleInterpolator from 'react-navigation/src/views/CardStackStyleInterpolator';
 
 import SplashScreen from 'react-native-splash-screen';
 import SizeConfig from './Common/Config/SizeConfig';
@@ -61,10 +60,6 @@ class MainHome extends Component {
                 });
             });
         });
-    }
-
-    componentWillUnmount(e) {
-        this.backPressHandle && this.backPressHandle.remove();
     }
 }
 
@@ -150,16 +145,13 @@ const  MainScreen = TabNavigator({
 });
 
 const AppNavigator = StackNavigator({
-    MainScreen:{
+    Index:{
         screen:MainScreen
     },
     ...AppConfig
 }, {
     headerMode: 'none',
-    mode:'card',
-    transitionConfig:()=>({
-        screenInterpolator: CardStackStyleInterpolator.forHorizontal,
-    })
+    mode:'card'
 });
 
 /**

@@ -26,6 +26,10 @@ const styles = {
         justifyContent:"flex-start",
 
     },
+    back:{
+        flex:1,
+        justifyContent:'center',
+    },
     no_subject_tips:{
         fontSize:16,
         color:'#585858',

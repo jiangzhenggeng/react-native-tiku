@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import PageLoading from '../Common/PageLoading';
 import UrlConfig from '../Common/Config/UrlConfig';
 import HttpRequest from '../Common/HttpRequest';
+import TouchBtnWrap from '../Common/TouchBtnWrap';
 import styles from './BuySubject.styles';
 
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
@@ -46,9 +47,11 @@ export default class extends Component {
         let header = (
             <View style={[styles.header,styles.borderFix]}>
                 <View style={{width:30}}>
-                    <TouchableNativeFeedback onPress={()=>{this.goBack()}}>
-                        <Icon name="ios-arrow-back" size={30} color="#fff" />
-                    </TouchableNativeFeedback>
+                    <TouchBtnWrap onPress={()=>{this.goBack()}}>
+                        <View style={styles.back}>
+                            <Icon name="ios-arrow-back" size={30} color="#fff" />
+                        </View>
+                    </TouchBtnWrap>
                 </View>
                 <Text style={styles.title}>我的定制科目</Text>
             </View>

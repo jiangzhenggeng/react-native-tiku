@@ -10,7 +10,6 @@ import {
     TouchableOpacity,
     TextInput,
     InteractionManager,
-    ToastAndroid,
     TouchableWithoutFeedback
 } from 'react-native';
 
@@ -22,8 +21,7 @@ import UrlConfig from "../Config/UrlConfig";
 import SizeConfig from "../Config/SizeConfig";
 import KeylConfig from "../Config/KeylConfig";
 import { NavigationActions } from 'react-navigation';
-
-const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+import ToastWin from "../../Common/ToastWin";
 
 let mobile = '';
 let password = '';
@@ -131,15 +129,15 @@ export default class extends Component {
     //点击注册按钮
     register(){
         if(!/^1\d{10}$/.test(mobile)){
-            ToastAndroid.show('请输入正确的手机号码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机号码');
             return;
         }
         if(password.length<6 || password.length>16 ){
-            ToastAndroid.show('密码长度为6-16位',ToastAndroid.SHORT);
+            ToastWin.show('密码长度为6-16位');
             return;
         }
         if(!/^\d{6}$/.test(code)){
-            ToastAndroid.show('请输入正确的手机验证码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机验证码');
             return;
         }
 
@@ -157,8 +155,6 @@ export default class extends Component {
                     expires: null
                 });
                 global.loginState = replayData.data;
-
-                ToastAndroid.show('注册成功',ToastAndroid.SHORT);
                 const resetAction = NavigationActions.reset({
                     index: 0,
                     actions: [
@@ -168,10 +164,10 @@ export default class extends Component {
                 this.props.navigation.dispatch(resetAction);
 
             }else{
-                ToastAndroid.show(replayData.message,ToastAndroid.LONG);
+                ToastWin.show(replayData.message);
             }
         }).catch((error)=>{
-            ToastAndroid.show(error.message,ToastAndroid.SHORT);
+            ToastWin.show(error.message);
         });
     }
 
@@ -206,7 +202,7 @@ class GetCode extends Component {
     getCodeBtn(){
         if(this.timer) return;
         if(!/^1\d{10}$/.test(mobile)){
-            ToastAndroid.show('请输入正确的手机号码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机号码');
             return;
         }
         this.props.parent.refs['loading'].open();
@@ -218,10 +214,10 @@ class GetCode extends Component {
             if(replayData.code==0){
                 this.sendMobileCodeShowTimer();
             }else{
-                ToastAndroid.show(replayData.message,ToastAndroid.LONG);
+                ToastWin.show(replayData.message);
             }
         }).catch((error)=>{
-            ToastAndroid.show('手机验证码发送失败，请稍后试试',ToastAndroid.SHORT);
+            ToastWin.show('手机验证码发送失败，请稍后试试');
             this.props.parent.refs['loading'].close();
         });
     }

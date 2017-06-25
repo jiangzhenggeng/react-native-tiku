@@ -22,6 +22,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import ImmutableCompare from "../Common/ImmutableCompare";
+import TouchBtnWrap from '../Common/TouchBtnWrap';
 import PageLoading from "../Common/PageLoading";
 import HttpRequest from '../Common/HttpRequest';
 import UrlConfig from '../Common/Config/UrlConfig';
@@ -61,7 +62,7 @@ export default class extends Component {
                 <View style={styles.container}>
                     <View style={[styles.header,styles.borderFix]}>
                         <View style={{width:30}}>
-                            <TouchableOpacity onPress={()=>{this.goBack}}>
+                            <TouchableOpacity onPress={()=>{this.goBack()}}>
                                 <Icon name="ios-arrow-back" size={30} color="#fff" />
                             </TouchableOpacity>
                         </View>
@@ -76,7 +77,7 @@ export default class extends Component {
             <View style={styles.container}>
                 <View style={[styles.header,styles.borderFix]}>
                     <View style={{width:30}}>
-                        <TouchableOpacity onPress={()=>{this.goBack}}>
+                        <TouchableOpacity onPress={()=>{this.goBack()}}>
                             <Icon name="ios-arrow-back" size={30} color="#fff" />
                         </TouchableOpacity>
                     </View>
@@ -117,7 +118,7 @@ export default class extends Component {
     _renderRow( rowData, sectionID, rowID ){
         return (
             <View key={sectionID+'-'+rowID} style={styles.bottomLine}>
-                <TouchableNativeFeedback onPress={this.intoSubjectList.bind(this,rowData)} style={{flex:1}}>
+                <TouchBtnWrap onPress={this.intoSubjectList.bind(this,rowData)} style={{flex:1}}>
                     <View style={[styles.borderFix]}>
                         <View style={[styles.subHeader]}>
                             <Text style={{fontSize:16,color:'#555555',marginRight:5,}}>{rowData.title}</Text>
@@ -128,7 +129,7 @@ export default class extends Component {
                             <Text style={[{color:'#999', fontSize:14, marginLeft:10}]}>共{rowData.donumber}/{rowData.totalnumber}道</Text>
                         </View>
                     </View>
-                </TouchableNativeFeedback>
+                </TouchBtnWrap>
             </View>
         );
     }

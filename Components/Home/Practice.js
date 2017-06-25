@@ -23,6 +23,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import ImmutableCompare from "../Common/ImmutableCompare";
 import PageLoading from "../Common/PageLoading";
+import TouchBtnWrap from "../Common/TouchBtnWrap";
 import HttpRequest from '../Common/HttpRequest';
 import UnitTool from '../Common/UnitTool';
 import UrlConfig from '../Common/Config/UrlConfig';
@@ -117,12 +118,12 @@ export default class extends Component {
                     {rowData.subject?rowData.subject.map((subject_item,subject_index)=>{
                         return (
                             <View style={[styles.subCellWrap]} key={subject_index}>
-                                <TouchableNativeFeedback onPress={this.intoSubjectList.bind(this,subject_item)} style={{flex:1}}>
+                                <TouchBtnWrap onPress={this.intoSubjectList.bind(this,subject_item)} style={{flex:1}}>
                                     <View style={[styles.subItemInner]}>
                                         <Icon style={styles.subject_icon} name={subject_item.icon} size={22} color={'#1682fb'} />
                                         <Text style={[styles.fixText]}>{subject_item.shortname||subject_item.subjectname.substr(0,5)}</Text>
                                     </View>
-                                </TouchableNativeFeedback>
+                                </TouchBtnWrap>
                             </View>
                         );
                     }):''}

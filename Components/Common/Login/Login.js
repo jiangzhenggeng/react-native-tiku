@@ -7,8 +7,7 @@ import {
     Text,
     View,
     TouchableOpacity,
-    TextInput,
-    ToastAndroid
+    TextInput
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -17,7 +16,9 @@ import HttpRequest from '../../Common/HttpRequest';
 import UrlConfig from "../Config/UrlConfig";
 import SizeConfig from "../Config/SizeConfig";
 import KeylConfig from "../Config/KeylConfig";
+import ToastWin from "../../Common/ToastWin";
 import Storage from "../../Common/Storage";
+
 import { NavigationActions } from 'react-navigation';
 
 export default class extends Component {
@@ -162,7 +163,7 @@ export default class extends Component {
             password:this.password
         }).then((replayData)=>{
             if(replayData.code!=0 && replayData.code!=99 ){
-                ToastAndroid.show(replayData.message,ToastAndroid.LONG);
+                ToastWin.show(replayData.message);
             }else{
                 global.storage.save({
                     key: KeylConfig.userLoginStatus,
@@ -170,15 +171,23 @@ export default class extends Component {
                     expires: null
                 }).then(()=>{
                     Storage.initSet(()=>{
-
                         global.loginState = replayData.data;
-                        ToastAndroid.show('登录成功',ToastAndroid.SHORT);
                         //没有科目
                         if(replayData.code==99){
-                            const navigateAction = NavigationActions.navigate({
-                                routeName: 'Center/BuySubject',
-                            });
-                            this.props.navigation.dispatch(navigateAction);
+                            // const navigateAction = NavigationActions.navigate({
+                            //     routeName: 'Center/BuySubject',
+                            // });
+                            // this.props.navigation.dispatch(navigateAction);
+                            const resetAction = NavigationActions.reset({
+                                index: 1,
+                                actions: [
+                                    NavigationActions.navigate({ routeName: 'Index'}),
+                                    NavigationActions.navigate({ routeName: 'Center/BuySubject'})
+                                ]
+                            })
+                            this.props.navigation.dispatch(resetAction)
+
+
                         }else{
                             const resetAction = NavigationActions.reset({
                                 index: 0,

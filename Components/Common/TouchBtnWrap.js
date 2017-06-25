@@ -10,8 +10,8 @@ export default class extends React.Component {
         super(props);
     }
     render() {
-        return Platform.OS=='ios'?<TouchableHighlight {...this.props} />:
-            <TouchableNativeFeedback {...this.props} />
+        return Platform.OS=='ios'?<TouchableHighlight {...this.props} style={[{flex:1},this.props.style]}/>:
+            <TouchableNativeFeedback {...this.props} style={[{flex:1},this.props.style]} />
     }
 }
 

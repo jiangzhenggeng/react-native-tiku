@@ -19,7 +19,6 @@ import {
     Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ImmutableCompare from '../Common/ImmutableCompare';
 import Banner from './Main/Banner';
 import TouchBtnWrap from '../Common/TouchBtnWrap';
 
@@ -27,9 +26,6 @@ export default class extends Component {
 
     constructor(props){
         super(props);
-        this.shouldComponentUpdate = (nextProps,nextState) => {
-            return ImmutableCompare.apply(this,arguments);
-        }
         this.state = {
             init:false
         };
@@ -43,10 +39,10 @@ export default class extends Component {
                 <ScrollView style={{flex:1}}>
                     <Banner {...this.props}></Banner>
                     <View style={styles.wrap}>
-                        <View style={styles.wrapRow}>
-                            <View style={[styles.wrapCell]}>
+                        <View style={[styles.wrapRow,]}>
+                            <View style={[styles.wrapCell,]}>
                                 <TouchBtnWrap onPress={this.toExam.bind(this)}>
-                                    <View style={styles.innerCell}>
+                                    <View style={[styles.innerCell]}>
                                         <Icon color={color} name={'ios-bookmarks'+st} size={size} />
                                         <Text>考试</Text>
                                     </View>

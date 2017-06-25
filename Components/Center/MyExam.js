@@ -23,6 +23,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import ImmutableCompare from "../Common/ImmutableCompare";
 import PageLoading from "../Common/PageLoading";
+import TouchBtnWrap from "../Common/TouchBtnWrap";
 import HttpRequest from '../Common/HttpRequest';
 import UrlConfig from '../Common/Config/UrlConfig';
 import SizeConfig from '../Common/Config/SizeConfig';
@@ -116,7 +117,7 @@ export default class extends Component {
     _renderRow( rowData, sectionID, rowID ){
         return (
             <View key={sectionID+'-'+rowID} style={styles.bottomLine}>
-                <TouchableNativeFeedback onPress={this.intoSubjectList.bind(this,rowData)} style={{flex:1}}>
+                <TouchBtnWrap onPress={this.intoSubjectList.bind(this,rowData)} style={{flex:1}}>
                     <View style={[styles.borderFix]}>
                         <View style={[styles.subHeader]}>
                             <Text style={{fontSize:16,color:'#555555',marginRight:5,}}>{rowData.title}</Text>
@@ -127,7 +128,7 @@ export default class extends Component {
                             <Text style={[{color:'#999', fontSize:14, marginLeft:10}]}>共{rowData.totalnumber}道</Text>
                         </View>
                     </View>
-                </TouchableNativeFeedback>
+                </TouchBtnWrap>
             </View>
         );
     }

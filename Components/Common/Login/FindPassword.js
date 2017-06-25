@@ -9,8 +9,7 @@ import {
     View,
     TouchableOpacity,
     TextInput,
-    InteractionManager,
-    ToastAndroid
+    InteractionManager
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,8 +17,7 @@ import ImmutableCompare from "../ImmutableCompare";
 import SizeConfig from "../Config/SizeConfig";
 import HttpRequest from "../HttpRequest";
 import UrlConfig from "../Config/UrlConfig";
-
-const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+import ToastWin from "../../Common/ToastWin";
 
 let mobile = '';
 let password = '';
@@ -128,15 +126,15 @@ export default class extends Component {
 
     settingPassword(){
         if(!/^1\d{10}$/.test(mobile)){
-            ToastAndroid.show('请输入正确的手机号码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机号码');
             return;
         }
         if(password.length<6 || password.length>16 ){
-            ToastAndroid.show('密码长度为6-16位',ToastAndroid.SHORT);
+            ToastWin.show('密码长度为6-16位');
             return;
         }
         if(!/^\d{6}$/.test(code)){
-            ToastAndroid.show('请输入正确的手机验证码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机验证码');
             return;
         }
 
@@ -148,15 +146,14 @@ export default class extends Component {
             }
         }).then((replayData)=>{
             if(replayData.code==0){
-                ToastAndroid.show('修改成功',ToastAndroid.LONG);
                 InteractionManager.runAfterInteractions(() => {
                     this.navigate.goBack();
                 });
             }else{
-                ToastAndroid.show(replayData.message,ToastAndroid.LONG);
+                ToastWin.show(replayData.message);
             }
         }).catch((error)=>{
-            ToastAndroid.show(error.message,ToastAndroid.SHORT);
+            ToastWin.show(error.message);
         });
     }
 
@@ -185,7 +182,7 @@ class GetCode extends Component {
     getCodeBtn(){
         if(this.timer) return;
         if(!/^1\d{10}$/.test(mobile)){
-            ToastAndroid.show('请输入正确的手机号码',ToastAndroid.SHORT);
+            ToastWin.show('请输入正确的手机号码');
             return;
         }
         HttpRequest.request(UrlConfig.user_findpassword_send_code,{
@@ -195,10 +192,10 @@ class GetCode extends Component {
             if(replayData.code==0){
                 this.sendMobileCodeShowTimer();
             }else{
-                ToastAndroid.show(replayData.message,ToastAndroid.LONG);
+                ToastWin.show(replayData.message);
             }
         }).catch((error)=>{
-            ToastAndroid.show('手机验证码发送失败，请稍后试试',ToastAndroid.SHORT);
+            ToastWin.show('手机验证码发送失败，请稍后试试');
         });
     }
     //发送验证码

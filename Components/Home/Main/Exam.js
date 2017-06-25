@@ -88,7 +88,7 @@ export default class extends Component {
                 <View style={{flex:1}}>
                     <ListView
                         showsVerticalScrollIndicator={true}
-                        style={[{flex:1,}]}
+                        style={[{flex:1}]}
                         initialListSize={10}
 
                         dataSource={this.state.dataSource}
@@ -115,7 +115,7 @@ export default class extends Component {
     _renderRow( item, sectionID, rowID ){
         return (
             <View key={sectionID+'-'+rowID} style={styles.moduleItemList}>
-                <TouchBtnWrap
+                <View
                     style={{flex:1,}}
                     onPress={this.doQuestion.bind(this,item.paperid)}
                 >
@@ -137,7 +137,7 @@ export default class extends Component {
                             </View>
                         </View>
                     </View>
-                </TouchBtnWrap>
+                </View>
             </View>
         );
     }
