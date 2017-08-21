@@ -16,7 +16,8 @@ import {
     Navigator,
     TouchableWithoutFeedback,
     ViewPagerAndroid,
-    Platform
+    Platform,
+    Animated
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Banner from './Main/Banner';
@@ -29,16 +30,99 @@ export default class extends Component {
         this.state = {
             init:false
         };
+        this.scrollY = new Animated.Value(0);
         this.navigate = this.props.navigation.navigate;
     }
 
     render() {
         let size = 30,st = '-outline',color = '#1682fb';
+
+        let keyOpaticy = this.scrollY.interpolate({
+            inputRange: [0,180],
+            outputRange: [0, 1]
+        });
+
         return (
             <View style={{flex:1}}>
-                <ScrollView style={{flex:1}}>
+                <ScrollView
+                    style={{flex:1}}
+                    stickyHeaderIndices={[0,2]}
+                    onScroll={Animated.event(
+                        [{nativeEvent: {contentOffset: {y: this.scrollY}}}]
+                    )}>
+
+                    <View style={{position:'relative'}}>
+                        <Animated.View style={[styles.headerAnimete,{
+                            opacity: keyOpaticy
+                        }]}>
+                            <View style={[styles.header,{justifyContent:'flex-start'}]}>
+                                <Text style={styles.title}>云题库</Text>
+                            </View>
+                        </Animated.View>
+                    </View>
+
                     <Banner {...this.props}></Banner>
+                    <View style={{position:'relative'}}>
+                        <Text>哈哈哈哈</Text>
+                    </View>
                     <View style={styles.wrap}>
+                        <View style={[styles.wrapRow,]}>
+                            <View style={[styles.wrapCell,]}>
+                                <TouchBtnWrap onPress={this.toExam.bind(this)}>
+                                    <View style={[styles.innerCell]}>
+                                        <Icon color={color} name={'ios-bookmarks'+st} size={size} />
+                                        <Text>考试</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                            <View style={styles.wrapCellLine} />
+                            <View style={styles.wrapCell}>
+                                <TouchBtnWrap onPress={this.toMoni.bind(this)}>
+                                    <View style={styles.innerCell}>
+                                        <Icon color={color} name={'ios-browsers'+st} size={size} />
+                                        <Text>模拟</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                        </View>
+                        <View style={[styles.wrapRow,]}>
+                            <View style={[styles.wrapCell,]}>
+                                <TouchBtnWrap onPress={this.toExam.bind(this)}>
+                                    <View style={[styles.innerCell]}>
+                                        <Icon color={color} name={'ios-bookmarks'+st} size={size} />
+                                        <Text>考试</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                            <View style={styles.wrapCellLine} />
+                            <View style={styles.wrapCell}>
+                                <TouchBtnWrap onPress={this.toMoni.bind(this)}>
+                                    <View style={styles.innerCell}>
+                                        <Icon color={color} name={'ios-browsers'+st} size={size} />
+                                        <Text>模拟</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                        </View>
+                        <View style={[styles.wrapRow,]}>
+                            <View style={[styles.wrapCell,]}>
+                                <TouchBtnWrap onPress={this.toExam.bind(this)}>
+                                    <View style={[styles.innerCell]}>
+                                        <Icon color={color} name={'ios-bookmarks'+st} size={size} />
+                                        <Text>考试</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                            <View style={styles.wrapCellLine} />
+                            <View style={styles.wrapCell}>
+                                <TouchBtnWrap onPress={this.toMoni.bind(this)}>
+                                    <View style={styles.innerCell}>
+                                        <Icon color={color} name={'ios-browsers'+st} size={size} />
+                                        <Text>模拟</Text>
+                                    </View>
+                                </TouchBtnWrap>
+                            </View>
+                        </View>
                         <View style={[styles.wrapRow,]}>
                             <View style={[styles.wrapCell,]}>
                                 <TouchBtnWrap onPress={this.toExam.bind(this)}>
@@ -91,6 +175,7 @@ export default class extends Component {
                         </View>
                     </View>
                 </ScrollView>
+
             </View>
         );
     }
@@ -129,6 +214,31 @@ export default class extends Component {
 }
 
 const styles = StyleSheet.create({
+    headerAnimete:{
+        // position:'absolute',
+        // top:0,
+        // left:0,
+        // right:0,
+        // height:50,
+        // zIndex:3,
+    },
+    title:{
+        color:'#fff',
+        fontSize:18
+    },
+    header:{
+        paddingLeft: 16,
+        paddingRight: 16,
+        backgroundColor:"#1682fb",
+        position:'relative',
+        height:50,
+
+        alignItems:'center',
+        flexDirection:"row",
+        justifyContent:"center",
+
+    },
+
     wrap:{
         flex:1,
         marginTop:10,

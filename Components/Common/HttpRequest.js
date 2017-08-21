@@ -36,7 +36,7 @@ export default {
                 let first = response.substr(0,1);
                 let last  = response.substr(-1,1);
                 if( (first!='[' && first!='{') || (last!=']' && last!='}') ){
-                    alert('数据格式错误');
+                    //alert('数据格式错误');
                 }
                 resolve( JSON.parse(response) );
 
